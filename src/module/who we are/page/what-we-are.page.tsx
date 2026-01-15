@@ -3,7 +3,7 @@ import WhatWeAre from "../components/what-we-are"
 
 const WhatWeDoPage = () => {
   return (
-    <div>
+    <div id="who">
       <WhatWeAre />
     </div>
   )
