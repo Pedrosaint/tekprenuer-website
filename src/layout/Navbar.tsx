@@ -22,8 +22,15 @@ const Navbar = () => {
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      const element = document.getElementById(id);
-      element?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const navHeight = window.innerWidth < 1024 ? 10 : 0; // Mobile navbar height offset
+          const elementPosition =
+            element.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top: elementPosition, behavior: "smooth" });
+        }
+      }, 100);
     }
   };
 
@@ -75,7 +82,7 @@ const Navbar = () => {
           <motion.img
             src={Logo}
             alt="Logo"
-            className="h-10 w-auto"
+            className="h-7 w-auto"
             whileHover={{ scale: 1.05 }}
           />
           <button

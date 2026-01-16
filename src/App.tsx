@@ -16,8 +16,8 @@ const App = () => {
       <WhyChooseUsPage />
       <OurWorkPage />
       <WhatOurClientSaysPage />
-      <Footer />
       <WhatsAppWidget />
+      <Footer />
     </div>
   );
 };

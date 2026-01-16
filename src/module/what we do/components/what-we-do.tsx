@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -14,12 +15,43 @@ import {
 import VectorLine from "../../../assets/images/Vector 4.png";
 import Vector from "../../../assets/images/Vector 3.png";
 import Fly from "../../../assets/images/fly.png";
+import { IoMdSend } from "react-icons/io";
 
 const INDICATOR_HEIGHT = 64; // h-16
 
 const WhatWeDo = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [indicatorTop, setIndicatorTop] = useState(0);
+
+    const [message, setMessage] = useState("");
+
+    const phoneNumber = "+2347081280274";
+    const companyName = "Tekprenuers";
+    const welcomeMessage =
+      "Hi, welcome to Tekprenuers, how can we help you today 😊";
+
+    // WhatsApp-style background pattern (Light grey doodle)
+    const whatsappBg = {
+      backgroundColor: "#e5ddd5",
+      backgroundImage: `url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded51.png")`,
+      backgroundOpacity: "0.4",
+    };
+
+    const handleSendMessage = () => {
+      if (message.trim()) {
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        window.open(whatsappUrl, "_blank");
+        setMessage("");
+      }
+    };
+
+    const handleKeyPress = (e: any) => {
+      if (e.key === "Enter" && message.trim()) {
+        handleSendMessage();
+      }
+    };
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -132,12 +164,17 @@ const WhatWeDo = () => {
               We offer a wide range of services
             </h1>
 
-            <img src={VectorLine} alt="" className="hidden md:blockabsolute left-190" />
+            <img
+              src={VectorLine}
+              alt=""
+              className="hidden md:blockabsolute left-190"
+            />
 
             <motion.button
+              onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-fit rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#0a1628] transition hover:bg-slate-100"
+              className="w-fit rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#0a1628] transition hover:bg-slate-100 cursor-pointer"
             >
               Let's Talk!
             </motion.button>
@@ -237,6 +274,103 @@ const WhatWeDo = () => {
             </div>
           </div>
         </div>
+
+           {isOpen && (
+                <div className="fixed bottom-24 right-6 z-50 w-87.5 sm:w-96 bg-white rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
+                  {/* Header - Matching the Dark Green Style */}
+                  <div className="bg-[#075e54] p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
+                        {/* Profile Pic Placeholder */}
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
+                          {/* <svg
+                            className="w-8 h-8 text-gray-500"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                          </svg> */}
+                          <div className="text-blue-700 font-black">TK</div>
+                        </div>
+                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#075e54] rounded-full" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-bold text-sm leading-tight">
+                          {companyName}
+                        </h3>
+                        <p className="text-green-100 text-[11px] opacity-90">
+                          Typically replies within 10 minutes
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="text-white opacity-80 hover:opacity-100 transition"
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+        
+                  {/* Messages Area with Doodle Background */}
+                  <div
+                    className="h-60 overflow-y-auto p-4 flex flex-col relative"
+                    style={whatsappBg}
+                  >
+                    <div className="flex justify-start mb-4">
+                      <div className="bg-white rounded-tr-lg rounded-br-lg rounded-bl-lg px-3 py-2 max-w-[85%] shadow-sm relative">
+                        {/* The "Tail" of the message bubble */}
+                        <div className="absolute top-0 -left-2 w-0 h-0 border-t-10 border-t-white border-l-10 border-l-transparent"></div>
+        
+                        <p className="text-[#303030] text-[13.5px] font-medium mb-1">
+                          {companyName}
+                        </p>
+                        <p className="text-gray-800 text-[14px] leading-relaxed">
+                          {welcomeMessage}
+                        </p>
+                        <div className="flex justify-end items-center gap-1 mt-1">
+                          <span className="text-[10px] text-gray-500 uppercase">
+                            03:52 PM
+                          </span>
+                          <span className="text-blue-400 text-xs">✓✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+                  {/* Input Area */}
+                  <div className="bg-[#f0f0f0] p-3 flex items-center gap-2">
+                    <div className="flex-1 bg-white rounded-full px-4 py-2 flex items-center shadow-sm">
+                      <input
+                        type="text"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        placeholder="Type a message.."
+                        className="w-full focus:outline-none text-[15px] bg-transparent"
+                      />
+                    </div>
+                    <button
+                      onClick={handleSendMessage}
+                      disabled={!message.trim()}
+                      className="text-[#919191] hover:text-[#075e54] disabled:opacity-30 transition-colors cursor-pointer"
+                    >
+                      <IoMdSend size={30} />
+                    </button>
+                  </div>
+                </div>
+              )}
       </section>
     </section>
   );

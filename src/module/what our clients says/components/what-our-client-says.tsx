@@ -19,7 +19,7 @@ export default function WhatOurClientSays() {
   };
 
   return (
-    <div className="bg-gray-50 py-16 px-4">
+    <div className="bg-gray-50 py-10 px-4">
       <div className="container mx-auto">
         {/* Contact Info Button */}
         <motion.div
