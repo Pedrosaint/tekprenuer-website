@@ -84,7 +84,7 @@ const Hero = () => {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight ubuntu-font"
+              className="text-3xl font-bold leading-tight ubuntu-font"
             >
               Promote Your Business With <br className="hidden sm:block" />
               Tech
