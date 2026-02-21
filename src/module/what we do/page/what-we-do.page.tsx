@@ -3,7 +3,7 @@ import WhatWeDo from "../components/what-we-do"
 
 const WhatWeDoPage = () => {
   return (
-    <div id="what">
+    <div>
       <WhatWeDo />
     </div>
   )

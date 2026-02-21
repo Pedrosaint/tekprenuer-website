@@ -2,7 +2,7 @@ import OurWork from "../components/our-work";
 
 const OurWorkPage = () => {
   return (
-    <div id="work">
+    <div>
       <OurWork />
     </div>
   );

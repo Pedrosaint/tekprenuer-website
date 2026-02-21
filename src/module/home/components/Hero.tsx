@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { } from "react";
 import { ArrowRight, Rocket, Puzzle, Package } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 import Navbar from "../../../layout/Navbar";
@@ -42,7 +42,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-[#010A36] overflow-hidden">
+    <section className="relative bg-[#010A36] overflow-hidden pt-8 lg:pt-14">
       <div className="">
         <Navbar />
       </div>

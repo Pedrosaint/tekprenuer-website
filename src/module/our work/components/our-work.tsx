@@ -15,25 +15,25 @@ import SoftTouch from "../../../assets/images/softtouch.png";
 
 export default function OurWork() {
   const [activeSlide, setActiveSlide] = useState(0);
-const [itemsPerSlide, setItemsPerSlide] = useState(() => {
-  const w = window.innerWidth;
-  if (w < 768) return 1; // mobile
-  if (w < 1024) return 2; // md
-  return 3; // lg+
-});
-
-useEffect(() => {
-  const handleResize = () => {
+  const [itemsPerSlide, setItemsPerSlide] = useState(() => {
     const w = window.innerWidth;
+    if (w < 768) return 1; // mobile
+    if (w < 1024) return 2; // md
+    return 3; // lg+
+  });
 
-    if (w < 768) setItemsPerSlide(1);
-    else if (w < 1024) setItemsPerSlide(2);
-    else setItemsPerSlide(3);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+      if (w < 768) setItemsPerSlide(1);
+      else if (w < 1024) setItemsPerSlide(2);
+      else setItemsPerSlide(3);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
 
 
@@ -114,7 +114,7 @@ useEffect(() => {
   );
 
   return (
-    <section className="relative bg-[#010A36] py-10 md:py-24 px-4 overflow-x-hidden">
+    <section id="work" className="relative bg-[#010A36] py-10 md:py-24 px-4 overflow-x-hidden">
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <motion.div
@@ -260,11 +260,10 @@ useEffect(() => {
                   onClick={() => setActiveSlide(index)}
                   className={`
         cursor-pointer rounded-full transition-all duration-300
-        ${
-          index === activeSlide
-            ? "w-10 h-2 bg-white"
-            : "w-2 h-2 bg-white/40 hover:bg-white/70"
-        }
+        ${index === activeSlide
+                      ? "w-10 h-2 bg-white"
+                      : "w-2 h-2 bg-white/40 hover:bg-white/70"
+                    }
       `}
                 />
               ))}

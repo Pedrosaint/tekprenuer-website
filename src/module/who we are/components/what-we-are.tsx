@@ -72,7 +72,7 @@ const WhoWeAre = () => {
   }, []);
 
   return (
-    <section className="relative bg-linear-to-b from-slate-50 to-white py-10">
+    <section id="who" className="relative bg-linear-to-b from-slate-50 to-white py-10">
       <div className="mx-auto container px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* LEFT CONTENT */}

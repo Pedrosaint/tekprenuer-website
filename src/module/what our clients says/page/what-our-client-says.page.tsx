@@ -3,7 +3,7 @@ import WhatOurClientSays from "../components/what-our-client-says"
 
 const WhatOurClientSaysPage = () => {
   return (
-    <div id="contact">
+    <div>
       <WhatOurClientSays />
     </div>
   )
